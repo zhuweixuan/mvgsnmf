@@ -6,8 +6,8 @@ device: "gpu"
 files:
   herb_presence: "matrix_from_mappings_herb_presence.csv"
   symptom_presence: "matrix_from_mappings_symptom.csv"
-  # The dosage view was disabled in every reported experiment (pd: false);
-  # therefore the large dosage matrix is intentionally not distributed.
+  # Reserved for planned dosage-aware work. With pd: false, this path is skipped
+  # and no dosage file is required.
   herb_dosage: "matrix_from_mappings_herb_g.csv"
   herb_category: "herb_category_onehot.csv"
   herb_features: "herb_feature_matrix_793.csv"

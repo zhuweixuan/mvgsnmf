@@ -1,6 +1,6 @@
 # Derived model inputs
 
-The minimum active inputs for `config/paper_full.yaml` are:
+We use the following inputs with `config/paper_full.yaml`:
 
 - `matrix_from_mappings_herb_presence.csv`: prescription-by-herb binary matrix.
 - `matrix_from_mappings_symptom.csv`: prescription-by-symptom binary matrix.
@@ -16,6 +16,11 @@ The minimum active inputs for `config/paper_full.yaml` are:
 The prescription matrices contain 33,729 rows, 793 herb columns, and 390
 symptom columns. The first column is the internal `prescription_id`.
 
-The dosage matrix is intentionally absent: the manuscript experiments did not
-activate the dosage reconstruction loss. See `../DATA_TERMS.md` before sharing
-these derived files.
+We do not include dosage data because dosage reconstruction is disabled in the
+current experiment configurations. With `loss_switches.pd: false`, the loader
+skips the dosage path, so the model and smoke test run without a dosage file.
+Dosage-aware modeling is a planned direction for future work; follow the
+repository for updates.
+
+For provenance and data terms, see
+[`../DATA_TERMS.md`](../DATA_TERMS.md).

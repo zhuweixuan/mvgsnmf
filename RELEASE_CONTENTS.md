@@ -1,26 +1,24 @@
-# Release contents
+# Repository contents
 
-## Included
+## Included files
 
 - The `gsnmf` Python package and the main training entry point.
-- Relative-path YAML profiles for the full paper model and the sweep base.
-- Environment creation and pinned core/GPU dependency files.
+- YAML profiles for the full model and experiment sweeps.
+- Environment definitions and pinned core/GPU dependencies.
 - A full-file checksum list in `MANIFEST-SHA256.txt`.
-- Minimum derived matrices and small graph, feature, alias, and knowledge files.
+- The derived matrices, graphs, features, aliases, and knowledge links used by
+  the reported experiments.
 - Aggregate ablation, baseline, sensitivity, significance, and unified results.
-- Principal reproduction and analysis scripts.
+- Reproduction and analysis scripts.
 
-## Intentionally excluded
+## Files kept local
 
-- All 641 `factors.npz` files and other checkpoints.
-- Per-seed/per-K/per-value experiment directories.
+- Model checkpoints and per-run factor files.
+- Per-seed, per-K, and per-value experiment directories.
 - Training logs, caches, bytecode, IDE files, and virtual environments.
 - Raw PTM prescription text, filtered or mapped free text, and parsing logs.
-- The 230 MiB dosage matrix, because every reported experiment has
-  `loss_switches.pd: false`.
-- Historical repair scripts, one-off print helpers, and obsolete comparison
-  scripts containing machine-specific paths.
+- Dosage data. Dosage reconstruction is disabled in the current experiments,
+  and dosage-aware modeling is planned future work.
 
-The source working directory was approximately 1.70 GiB, almost entirely due
-to experiment artifacts. This package retains compact aggregate evidence rather
-than those regenerable outputs.
+We keep the repository focused by providing compact aggregate results while
+leaving regenerable run artifacts local.

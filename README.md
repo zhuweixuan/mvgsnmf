@@ -1,14 +1,13 @@
-# MV-GSNMF reproducibility package
+# MV-GSNMF: Code and Reproducibility
 
-This directory contains the model implementation, the configurations used in
-the manuscript, the minimum derived inputs needed by the reported model, and
-compact aggregate results. It intentionally excludes checkpoints, per-seed
-training directories, logs, caches, virtual environments, and raw prescription
-text.
+We provide the MV-GSNMF implementation, the configurations used in our paper,
+the derived inputs used by the experiments, and compact aggregate results.
+Generated checkpoints, per-seed outputs, logs, caches, virtual environments,
+and other regenerable run artifacts remain outside this repository.
 
 ## Create the environment
 
-The reported GPU rerun was verified with Python 3.13.7, NumPy 2.3.1,
+We verified the GPU workflow with Python 3.13.7, NumPy 2.3.1,
 SciPy 1.17.1, pandas 2.3.2, scikit-learn 1.8.0, PyYAML 6.0.3, tqdm 4.67.3,
 CuPy 14.1.1, CUDA runtime 12.9, and an NVIDIA RTX 4060 Ti.
 
@@ -46,13 +45,14 @@ python main.py --smoke --device gpu
 ```
 
 Use `--device cpu` for the CPU path. The smoke test uses 128 prescriptions,
-one pretraining iteration, and two main iterations; it is not a scientific
-experiment.
+one pretraining iteration, and two main iterations to check installation and
+end-to-end execution. Use the full configuration below to reproduce the
+reported experiments.
 
 ## Reproduce the main training profile
 
-`config/paper_full.yaml` is the full profile used by the final experiments.
-All paths are relative to this project.
+We used `config/paper_full.yaml` for the experiments reported in our paper.
+All paths are relative to the project root.
 
 PowerShell:
 
@@ -70,9 +70,9 @@ export CUBLAS_WORKSPACE_CONFIG=:4096:8
 python main.py --config config/paper_full.yaml --device gpu
 ```
 
-Full training creates a timestamped directory under `artifacts/`. It is much
-longer than the smoke test. Small numerical differences can occur across GPU,
-CUDA, and sparse-library versions.
+Full training creates a timestamped directory under `artifacts/` and takes
+substantially longer than the smoke test. Small numerical differences can occur
+across GPU, CUDA, and sparse-library versions.
 
 `config/best_v4.yaml` is the reconstruction-only base configuration used by
 the sweep scripts, which explicitly construct their own experimental loss
@@ -80,12 +80,12 @@ profiles.
 
 ## Decremental ablation chain
 
-The manuscript evaluates six configurations by starting from full MV-GSNMF
-and cumulatively removing one add-on at a time. `Graph` means bilateral herb
-and symptom graph regularization. `Know` is TCM MeSH knowledge coupling, and
-`Pair` is the herb-pair co-occurrence view.
+In our paper, we evaluate six configurations by starting from full MV-GSNMF and
+cumulatively removing one component at a time. We use `Graph` for bilateral
+herb and symptom graph regularization, `Know` for TCM MeSH knowledge coupling,
+and `Pair` for the herb-pair co-occurrence view.
 
-| Stage | Manuscript variant | Active add-ons | Cumulative change |
+| Stage | Variant | Active add-ons | Cumulative change |
 |---:|---|---|---|
 | 00 | Full MV-GSNMF | Graph + Know + Pair + L1 | Full objective |
 | 01 | SL-CNMF + Graph + Pair + L1 | Graph + Pair + L1 | Remove `know_hs` |
@@ -95,17 +95,17 @@ and symptom graph regularization. `Know` is TCM MeSH knowledge coupling, and
 | 05 | Reconstruction-only SL-CNMF | None | Then remove `graph_h` |
 
 The herb-presence (`ph`) and symptom-presence (`ps`) reconstruction terms and
-nonnegativity remain active in every stage. The dosage view (`pd`) is disabled
-because dosage-aware modeling is outside the scope of the present study.
-Consequently, stage 05 is a reconstruction-only, shared-prescription-factor
-two-view NMF, not the separate concatenated-data `Vanilla NMF` baseline.
+nonnegativity remain active throughout the chain. We disable the dosage view
+(`pd`) in the current experiments. Stage 05 is therefore a reconstruction-only,
+shared-prescription-factor two-view NMF, not the separate concatenated-data
+`Vanilla NMF` baseline.
 
 ### Full paper sweep: all six variants
 
-Run the following command from the project root. It explicitly reproduces the
-paper design: six stages, five seeds, and eight topic counts, for 240 runs.
-The runner creates the entire chain in one invocation; separate commands are
-not required for individual stages.
+Run the following command from the project root. It uses our reported setup:
+six stages, five seeds, and eight topic counts, for 240 runs. The runner creates
+the entire chain in one invocation; separate commands are not required for
+individual stages.
 
 PowerShell:
 
@@ -154,8 +154,8 @@ the output root also contains `manifest.json`.
 
 ### Short chain check
 
-This command runs all six stages at only `seed=42, K=30`. It is useful for
-checking the pipeline but is not a replacement for the 240-run paper sweep.
+This command checks the full six-stage pipeline at `seed=42, K=30`. Use the
+240-run sweep above to reproduce the reported results.
 
 ```powershell
 python scripts/run_ablation_multiseed.py `
@@ -194,52 +194,45 @@ python scripts/revision/run_tfidf_ablation.py --base_config config/best_v4.yaml
 python scripts/revision/run_wilcoxon_significance.py
 ```
 
-These batch commands can generate many runs. Their heavy outputs are excluded
-from this package; only aggregate tables, statistics, and figures are retained
-under `paper_results/`.
+These batch commands can generate many runs. We keep their per-run outputs local
+and provide the aggregate tables, statistics, and figures under
+`paper_results/`.
 
 ## Data scope
 
-The model starts from versioned, derived matrices in `data/`. Raw PTM/CKCEST
-prescription text, filtered free text, and intermediate parsing logs are not
-included. Dosage-aware prescription modeling was not evaluated in this study
-and is one of our planned directions for future work. Readers are welcome to
-follow this repository for future updates.
+We provide the versioned derived matrices used by the current model. They
+contain sequential prescription identifiers and encoded herb and symptom
+indicators rather than raw prescription text.
 
-No dosage matrix is distributed in this repository. Every released experiment
-sets `loss_switches.pd: false`; in this mode the loader neither validates nor
-reads the reserved `files.herb_dosage` path. It instead creates a
-shape-compatible, all-zero sparse placeholder, so training and the smoke test
-run normally while the dosage CSV is absent. The non-public file path is also
-listed in `.gitignore` to prevent accidental publication. Enabling `pd` in
-future work will require adding a local dosage dataset that is not part of this
-release.
+All experiment configurations in this repository set `loss_switches.pd: false`.
+With `pd` disabled, the loader skips the dosage path and creates a
+shape-compatible, all-zero sparse matrix, so the documented training commands
+and smoke test run without a dosage file. Dosage-aware prescription modeling is
+one of our planned directions for future work; follow this repository for
+updates.
 
-The included matrices contain sequential prescription identifiers and encoded
-herb/symptom indicators, not raw prescription text. They remain derived from a
-third-party research dataset and are not covered by the code terms. Read
-[`DATA_TERMS.md`](DATA_TERMS.md) before redistribution and verify every input
-with [`data/SHA256SUMS`](data/SHA256SUMS).
+We document the provenance and use terms for the derived matrices in
+[`DATA_TERMS.md`](DATA_TERMS.md). SHA-256 checksums for every data file are
+listed in [`data/SHA256SUMS`](data/SHA256SUMS).
 
 ## Directory layout
 
 ```text
 config/          paper and sweep-base YAML configurations
-data/            minimum derived inputs and checksums
+data/            derived model inputs and checksums
 gsnmf/           model, loading, training, inference, and evaluation code
-paper_results/   compact aggregate manuscript results
+paper_results/   compact aggregate results reported in our paper
 scripts/         reproducibility and analysis entry points
 artifacts/       generated locally; ignored by version control
 ```
 
-See [`RELEASE_CONTENTS.md`](RELEASE_CONTENTS.md) for the exact inclusion and
-exclusion policy.
+[`RELEASE_CONTENTS.md`](RELEASE_CONTENTS.md) lists the contents of this
+repository.
 
 ## License
 
-The source code and documentation are released under the
-[`MIT License`](LICENSE). Copyright (c) 2026 MV-GSNMF Authors.
+We release the source code and documentation under the
+[`MIT License`](LICENSE). Copyright (c) 2026 Weixuan Zhu.
 
-Files under `data/` are not covered by the MIT License and remain governed by
-the separate provenance and redistribution notice in
+Data files follow the provenance and use terms documented in
 [`DATA_TERMS.md`](DATA_TERMS.md).
