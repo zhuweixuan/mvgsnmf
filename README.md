@@ -78,13 +78,115 @@ CUDA, and sparse-library versions.
 the sweep scripts, which explicitly construct their own experimental loss
 profiles.
 
-## Experiment entry points
+## Decremental ablation chain
 
-The main paper-facing scripts are:
+The manuscript evaluates six configurations by starting from full MV-GSNMF
+and cumulatively removing one add-on at a time. `Graph` means bilateral herb
+and symptom graph regularization. `Know` is TCM MeSH knowledge coupling, and
+`Pair` is the herb-pair co-occurrence view.
+
+| Stage | Manuscript variant | Active add-ons | Cumulative change |
+|---:|---|---|---|
+| 00 | Full MV-GSNMF | Graph + Know + Pair + L1 | Full objective |
+| 01 | SL-CNMF + Graph + Pair + L1 | Graph + Pair + L1 | Remove `know_hs` |
+| 02 | SL-CNMF + Graph + L1 | Graph + L1 | Then remove `pair` |
+| 03 | SL-CNMF + Graph | Graph | Then remove `l1` |
+| 04 | SL-CNMF + HerbGraph | Herb graph only | Then remove `graph_s` |
+| 05 | Reconstruction-only SL-CNMF | None | Then remove `graph_h` |
+
+The herb-presence (`ph`) and symptom-presence (`ps`) reconstruction terms and
+nonnegativity remain active in every stage. The dosage view (`pd`) is disabled.
+Consequently, stage 05 is a reconstruction-only, shared-prescription-factor
+two-view NMF, not the separate concatenated-data `Vanilla NMF` baseline.
+
+### Full paper sweep: all six variants
+
+Run the following command from the project root. It explicitly reproduces the
+paper design: six stages, five seeds, and eight topic counts, for 240 runs.
+The runner creates the entire chain in one invocation; separate commands are
+not required for individual stages.
+
+PowerShell:
+
+```powershell
+python scripts/run_ablation_multiseed.py `
+  --base_config config/best_v4.yaml `
+  --seeds 42 43 44 45 46 `
+  --k_values 5 10 15 20 25 30 35 40 `
+  --drop_order know_hs pair l1 graph_s graph_h `
+  --pretrain_iters 100 `
+  --output_root artifacts/ablation_multiseed `
+  --resume
+```
+
+Bash:
 
 ```bash
-python scripts/run_ablation_multiseed.py --base_config config/best_v4.yaml
-python scripts/run_ppl_multiseed_baselines.py --base_config config/best_v4.yaml
+python scripts/run_ablation_multiseed.py \
+  --base_config config/best_v4.yaml \
+  --seeds 42 43 44 45 46 \
+  --k_values 5 10 15 20 25 30 35 40 \
+  --drop_order know_hs pair l1 graph_s graph_h \
+  --pretrain_iters 100 \
+  --output_root artifacts/ablation_multiseed \
+  --resume
+```
+
+The base configuration uses `device: gpu`; these batch runners inherit the
+device from the YAML file. `--resume` skips only runs that already contain
+`summary.json`, `factors.npz`, `metrics.json`, and `config.yaml`.
+
+The generated stage directories are:
+
+```text
+00_active_graph_h__graph_s__l1__pair__know_hs/
+01_active_graph_h__graph_s__l1__pair/
+02_active_graph_h__graph_s__l1/
+03_active_graph_h__graph_s/
+04_active_graph_h/
+05_recon_only_ph_ps_nonneg/
+```
+
+Each stage stores results as
+`<stage>/seed_<seed>/K_<K>/{summary.json,factors.npz,metrics.json,config.yaml}`;
+the output root also contains `manifest.json`.
+
+### Short chain check
+
+This command runs all six stages at only `seed=42, K=30`. It is useful for
+checking the pipeline but is not a replacement for the 240-run paper sweep.
+
+```powershell
+python scripts/run_ablation_multiseed.py `
+  --base_config config/best_v4.yaml `
+  --seeds 42 `
+  --k_values 30 `
+  --drop_order know_hs pair l1 graph_s graph_h `
+  --pretrain_iters 100 `
+  --output_root artifacts/ablation_chain_seed42_K30 `
+  --resume
+```
+
+## NMF comparator family
+
+The separate baseline runner evaluates the five NMF-side comparison variants:
+reconstruction-only SL-CNMF, concatenated-data Vanilla NMF, independent NMF
+with post-hoc Procrustes alignment, sparse NMF, and GNMF. These are comparison
+models and are not additional steps in the six-stage decremental chain.
+
+```powershell
+python scripts/run_ppl_multiseed_baselines.py `
+  --base_config config/best_v4.yaml `
+  --seeds 42 43 44 45 46 `
+  --k_values 5 10 15 20 25 30 35 40 `
+  --eval_split test `
+  --output_root artifacts/ppl_multiseed_compare `
+  --auto_resume
+```
+
+## Other experiment entry points
+
+```bash
 python scripts/revision/run_hyperparam_sensitivity.py --base_config config/best_v4.yaml
 python scripts/revision/run_structure_sensitivity.py --base_config config/best_v4.yaml --device gpu
 python scripts/revision/run_tfidf_ablation.py --base_config config/best_v4.yaml
