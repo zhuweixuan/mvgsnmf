@@ -202,24 +202,24 @@ under `paper_results/`.
 
 The model starts from versioned, derived matrices in `data/`. Raw PTM/CKCEST
 prescription text, filtered free text, and intermediate parsing logs are not
-included. The dosage view was disabled in every paper experiment
-(`loss_switches.pd: false`), so the 230 MiB dosage CSV is also omitted. The
-loader creates a shape-compatible zero placeholder when that view is disabled;
-enabling `pd` still requires the actual dosage file. Dosage-aware prescription
-modeling is part of our planned follow-up work, and readers are welcome to
-follow future project updates.
+included. Dosage-aware prescription modeling was not evaluated in this study
+and is one of our planned directions for future work. Readers are welcome to
+follow this repository for future updates.
+
+No dosage matrix is distributed in this repository. Every released experiment
+sets `loss_switches.pd: false`; in this mode the loader neither validates nor
+reads the reserved `files.herb_dosage` path. It instead creates a
+shape-compatible, all-zero sparse placeholder, so training and the smoke test
+run normally while the dosage CSV is absent. The non-public file path is also
+listed in `.gitignore` to prevent accidental publication. Enabling `pd` in
+future work will require adding a local dosage dataset that is not part of this
+release.
 
 The included matrices contain sequential prescription identifiers and encoded
 herb/symptom indicators, not raw prescription text. They remain derived from a
 third-party research dataset and are not covered by the code terms. Read
 [`DATA_TERMS.md`](DATA_TERMS.md) before redistribution and verify every input
 with [`data/SHA256SUMS`](data/SHA256SUMS).
-
-The deterministic extraction scripts are maintained outside the original
-MV-GSNMF model directory and depend on source files whose redistribution rights
-are unresolved. Consequently, this package documents the provenance and begins
-from the frozen derived matrices; it does not claim a from-scratch rebuild from
-the restricted raw corpus.
 
 ## Directory layout
 

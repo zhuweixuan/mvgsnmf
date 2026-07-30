@@ -23,3 +23,6 @@ artifacts/
 **/seed_*/
 **/K_*/
 **/val_*/
+
+# Non-public dosage data reserved for future work
+data/matrix_from_mappings_herb_g.csv
