@@ -23,7 +23,8 @@ Therefore:
    private manuscript review and research reproducibility.
 3. Do not publish or redistribute the `data/` directory until the authors have
    confirmed that the source terms permit it or have obtained permission.
-4. A future code license does not apply to the files under `data/`.
+4. The repository's MIT License for code does not apply to the files under
+   `data/`.
 5. The matrices use sequential internal prescription identifiers; no raw text,
    phone number, email address, or government identifier is included.
 

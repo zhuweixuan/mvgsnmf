@@ -235,9 +235,11 @@ artifacts/       generated locally; ignored by version control
 See [`RELEASE_CONTENTS.md`](RELEASE_CONTENTS.md) for the exact inclusion and
 exclusion policy.
 
-## Licensing
+## License
 
-No open-source license was present in the working project, so this package does
-not assign one automatically. The current code notice is in [`LICENSE`](LICENSE).
-Replace it with the authors' chosen code license before an open-source release.
-The data restrictions in [`DATA_TERMS.md`](DATA_TERMS.md) remain separate.
+The source code and documentation are released under the
+[`MIT License`](LICENSE). Copyright (c) 2026 MV-GSNMF Authors.
+
+Files under `data/` are not covered by the MIT License and remain governed by
+the separate provenance and redistribution notice in
+[`DATA_TERMS.md`](DATA_TERMS.md).
