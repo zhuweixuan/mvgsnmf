@@ -1,0 +1,172 @@
+{
+  "knn_k": {
+    "display_name": "Graph KNN Neighbors (k)",
+    "results": [
+      {
+        "value_str": "5",
+        "n_completed": 5,
+        "mean": {
+          "valid_map_avg": 0.2505222421547834,
+          "valid_map_sym2herb": 0.23297712228994913,
+          "valid_map_herb2sym": 0.26806736201961767,
+          "topic_coherence": 0.6682631931252656,
+          "herb_pred_ppl_em_prob": 143.6367832797119,
+          "symptom_pred_ppl_em_prob": 54.517659050958194
+        },
+        "std": {
+          "valid_map_avg": 0.007824632594643662,
+          "valid_map_sym2herb": 0.00512739490505183,
+          "valid_map_herb2sym": 0.011189689610079436,
+          "topic_coherence": 0.007939573458887803,
+          "herb_pred_ppl_em_prob": 0.8486667820393249,
+          "symptom_pred_ppl_em_prob": 0.7680986913310754
+        }
+      },
+      {
+        "value_str": "10",
+        "n_completed": 5,
+        "mean": {
+          "valid_map_avg": 0.24906913576156367,
+          "valid_map_sym2herb": 0.23617485332956495,
+          "valid_map_herb2sym": 0.26196341819356234,
+          "topic_coherence": 0.6721123045386017,
+          "herb_pred_ppl_em_prob": 143.05354186710855,
+          "symptom_pred_ppl_em_prob": 54.53217807372696
+        },
+        "std": {
+          "valid_map_avg": 0.007479952781535556,
+          "valid_map_sym2herb": 0.006493058449788196,
+          "valid_map_herb2sym": 0.009029366559225024,
+          "topic_coherence": 0.010270148424195965,
+          "herb_pred_ppl_em_prob": 1.3710909279075025,
+          "symptom_pred_ppl_em_prob": 0.7590938484591211
+        }
+      },
+      {
+        "value_str": "20",
+        "n_completed": 5,
+        "mean": {
+          "valid_map_avg": 0.2519578141792735,
+          "valid_map_sym2herb": 0.23695434384593633,
+          "valid_map_herb2sym": 0.2669612845126106,
+          "topic_coherence": 0.6773918354956252,
+          "herb_pred_ppl_em_prob": 143.27309565982594,
+          "symptom_pred_ppl_em_prob": 54.45521308854143
+        },
+        "std": {
+          "valid_map_avg": 0.005384084042983676,
+          "valid_map_sym2herb": 0.0033138279331172637,
+          "valid_map_herb2sym": 0.007948216227568508,
+          "topic_coherence": 0.012058113825166866,
+          "herb_pred_ppl_em_prob": 0.9607573306139321,
+          "symptom_pred_ppl_em_prob": 0.8390579458465751
+        }
+      },
+      {
+        "value_str": "50",
+        "n_completed": 5,
+        "mean": {
+          "valid_map_avg": 0.2525750559096829,
+          "valid_map_sym2herb": 0.23470724597345605,
+          "valid_map_herb2sym": 0.2704428658459097,
+          "topic_coherence": 0.6743504222337824,
+          "herb_pred_ppl_em_prob": 144.1188298696294,
+          "symptom_pred_ppl_em_prob": 54.29719494083687
+        },
+        "std": {
+          "valid_map_avg": 0.0018065086603226389,
+          "valid_map_sym2herb": 0.00661372873842583,
+          "valid_map_herb2sym": 0.006028712974776206,
+          "topic_coherence": 0.008374146726569876,
+          "herb_pred_ppl_em_prob": 1.9524498160064334,
+          "symptom_pred_ppl_em_prob": 0.7752136489458075
+        }
+      }
+    ]
+  },
+  "pair_min_support": {
+    "display_name": "Pair Min Support Threshold",
+    "results": [
+      {
+        "value_str": "5",
+        "n_completed": 5,
+        "mean": {
+          "valid_map_avg": 0.2544537552078756,
+          "valid_map_sym2herb": 0.23878776507919097,
+          "valid_map_herb2sym": 0.27011974533656025,
+          "topic_coherence": 0.6692155921552735,
+          "herb_pred_ppl_em_prob": 143.0894246707286,
+          "symptom_pred_ppl_em_prob": 54.51705500932677
+        },
+        "std": {
+          "valid_map_avg": 0.0037937119887917615,
+          "valid_map_sym2herb": 0.001050955071459911,
+          "valid_map_herb2sym": 0.007591442394248874,
+          "topic_coherence": 0.012243878812915037,
+          "herb_pred_ppl_em_prob": 1.2375887431735726,
+          "symptom_pred_ppl_em_prob": 0.7451890534502174
+        }
+      },
+      {
+        "value_str": "10",
+        "n_completed": 5,
+        "mean": {
+          "valid_map_avg": 0.24856166593107973,
+          "valid_map_sym2herb": 0.23331242658332027,
+          "valid_map_herb2sym": 0.2638109052788392,
+          "topic_coherence": 0.6733384348889581,
+          "herb_pred_ppl_em_prob": 143.45011177116535,
+          "symptom_pred_ppl_em_prob": 54.526457471583775
+        },
+        "std": {
+          "valid_map_avg": 0.005023557833522268,
+          "valid_map_sym2herb": 0.004849274101106269,
+          "valid_map_herb2sym": 0.0067239089970072075,
+          "topic_coherence": 0.00930822163374146,
+          "herb_pred_ppl_em_prob": 1.6278406484271586,
+          "symptom_pred_ppl_em_prob": 0.7404992746752571
+        }
+      },
+      {
+        "value_str": "20",
+        "n_completed": 5,
+        "mean": {
+          "valid_map_avg": 0.2516584155266434,
+          "valid_map_sym2herb": 0.2376809866533188,
+          "valid_map_herb2sym": 0.265635844399968,
+          "topic_coherence": 0.6741893202910569,
+          "herb_pred_ppl_em_prob": 142.80719761891646,
+          "symptom_pred_ppl_em_prob": 54.538183966203974
+        },
+        "std": {
+          "valid_map_avg": 0.0018064950059913472,
+          "valid_map_sym2herb": 0.0023926720537112835,
+          "valid_map_herb2sym": 0.0027879750628309386,
+          "topic_coherence": 0.010322945244849955,
+          "herb_pred_ppl_em_prob": 1.0903509938370024,
+          "symptom_pred_ppl_em_prob": 0.7632275071528187
+        }
+      },
+      {
+        "value_str": "50",
+        "n_completed": 5,
+        "mean": {
+          "valid_map_avg": 0.24928707903217812,
+          "valid_map_sym2herb": 0.23756704849637256,
+          "valid_map_herb2sym": 0.2610071095679837,
+          "topic_coherence": 0.675218675131006,
+          "herb_pred_ppl_em_prob": 142.78375545677022,
+          "symptom_pred_ppl_em_prob": 54.516358516905576
+        },
+        "std": {
+          "valid_map_avg": 0.0029686909234494653,
+          "valid_map_sym2herb": 0.0018911901182487904,
+          "valid_map_herb2sym": 0.005203799879614097,
+          "topic_coherence": 0.009250049584284594,
+          "herb_pred_ppl_em_prob": 1.029844218459473,
+          "symptom_pred_ppl_em_prob": 0.8394724002889041
+        }
+      }
+    ]
+  }
+}

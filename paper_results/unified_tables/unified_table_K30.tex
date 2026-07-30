@@ -1,0 +1,101 @@
+\begin{table*}[htbp]
+\centering
+\caption{Unified comparison at $K=30$ under identical NNLS evaluation protocol.}
+\label{tab:unified}
+\small
+\begin{subtable}{\textwidth}
+\centering
+\caption{Symptom $\to$ Herb Recommendation}
+\begin{tabular}{lccccc}
+\toprule
+Model & MAP & P@5 & P@10 & R@10 & NDCG@10 \\
+\midrule
+ptm\_a & --- & $0.2299\pm0.0037$ & --- & --- & --- \\
+ptm\_b & --- & $0.2507\pm0.0027$ & --- & --- & --- \\
+ptm\_c & --- & $0.2376\pm0.0035$ & --- & --- & --- \\
+ptm\_d & --- & $0.2522\pm0.0028$ & --- & --- & --- \\
+atm & --- & $0.0089\pm0.0022$ & --- & --- & --- \\
+bibtm & --- & $0.2143\pm0.0000$ & --- & --- & --- \\
+blocklda & --- & $0.1923\pm0.0129$ & --- & --- & --- \\
+linklda & --- & $0.2277\pm0.0034$ & --- & --- & --- \\
+linkplsalda & --- & $0.2284\pm0.0034$ & --- & --- & --- \\
+CF & --- & $0.2194\pm0.0010$ & --- & --- & --- \\
+recon\_only\_mvgsnmf & $0.2425\pm0.0034$ & $0.2457\pm0.0037$ & $0.1923\pm0.0024$ & $0.2892\pm0.0041$ & $0.1931\pm0.0027$ \\
+vanilla\_nmf\_fro & $0.2486\pm0.0031$ & $0.2513\pm0.0034$ & $0.1950\pm0.0024$ & $0.2966\pm0.0041$ & $0.2029\pm0.0029$ \\
+indep\_nmf\_procrustes\_bridge & $0.1379\pm0.0141$ & $0.1202\pm0.0188$ & $0.1037\pm0.0179$ & $0.1603\pm0.0269$ & $0.1225\pm0.0151$ \\
+sparse\_nmf\_l1 & $0.2345\pm0.0033$ & $0.2464\pm0.0025$ & $0.1912\pm0.0020$ & $0.2936\pm0.0034$ & $0.2048\pm0.0030$ \\
+gnmf\_graph & $0.2494\pm0.0031$ & $0.2490\pm0.0027$ & $0.1970\pm0.0024$ & $0.3018\pm0.0049$ & $0.2107\pm0.0037$ \\
+active\_graph\_h\_\_graph\_s\_\_l1\_\_pair\_\_know\_hs & $0.2355\pm0.0046$ & $0.2370\pm0.0057$ & $0.1897\pm0.0027$ & $0.2899\pm0.0042$ & $0.2007\pm0.0034$ \\
+active\_graph\_h\_\_graph\_s\_\_l1\_\_pair & $0.2357\pm0.0067$ & $0.2363\pm0.0069$ & $0.1896\pm0.0045$ & $0.2904\pm0.0082$ & $0.2010\pm0.0067$ \\
+active\_graph\_h\_\_graph\_s\_\_l1 & $0.2355\pm0.0075$ & $0.2377\pm0.0082$ & $0.1894\pm0.0043$ & $0.2905\pm0.0077$ & $0.2009\pm0.0071$ \\
+active\_graph\_h\_\_graph\_s & $0.2390\pm0.0024$ & $0.2403\pm0.0015$ & $0.1916\pm0.0017$ & $0.2936\pm0.0029$ & $0.2036\pm0.0026$ \\
+active\_graph\_h & $0.2044\pm0.0231$ & $0.2044\pm0.0267$ & $0.1715\pm0.0150$ & $0.2626\pm0.0213$ & $0.1749\pm0.0173$ \\
+recon\_only\_ph\_ps\_nonneg & $0.2427\pm0.0035$ & $0.2458\pm0.0040$ & $0.1922\pm0.0025$ & $0.2889\pm0.0041$ & $0.1932\pm0.0029$ \\
+\bottomrule
+\end{tabular}
+\end{subtable}
+\vspace{0.3cm}
+\begin{subtable}{\textwidth}
+\centering
+\caption{Herb $\to$ Symptom Recommendation}
+\begin{tabular}{lcccc}
+\toprule
+Model & MAP & P@10 & R@10 & NDCG@10 \\
+\midrule
+ptm\_a & --- & --- & --- & --- \\
+ptm\_b & --- & --- & --- & --- \\
+ptm\_c & --- & --- & --- & --- \\
+ptm\_d & --- & --- & --- & --- \\
+atm & --- & --- & --- & --- \\
+bibtm & --- & --- & --- & --- \\
+blocklda & --- & --- & --- & --- \\
+linklda & --- & --- & --- & --- \\
+linkplsalda & --- & --- & --- & --- \\
+CF & --- & --- & --- & --- \\
+recon\_only\_mvgsnmf & $0.2707\pm0.0039$ & $0.0632\pm0.0010$ & $0.4306\pm0.0062$ & $0.2967\pm0.0048$ \\
+vanilla\_nmf\_fro & $0.2718\pm0.0033$ & $0.0634\pm0.0012$ & $0.4306\pm0.0074$ & $0.2967\pm0.0043$ \\
+indep\_nmf\_procrustes\_bridge & $0.2364\pm0.0100$ & $0.0601\pm0.0012$ & $0.4044\pm0.0089$ & $0.2594\pm0.0091$ \\
+sparse\_nmf\_l1 & $0.2183\pm0.0056$ & $0.0584\pm0.0012$ & $0.3971\pm0.0089$ & $0.2477\pm0.0067$ \\
+gnmf\_graph & $0.2673\pm0.0048$ & $0.0595\pm0.0015$ & $0.4053\pm0.0084$ & $0.2907\pm0.0059$ \\
+active\_graph\_h\_\_graph\_s\_\_l1\_\_pair\_\_know\_hs & $0.2671\pm0.0040$ & $0.0629\pm0.0028$ & $0.4298\pm0.0129$ & $0.2927\pm0.0063$ \\
+active\_graph\_h\_\_graph\_s\_\_l1\_\_pair & $0.2683\pm0.0104$ & $0.0636\pm0.0045$ & $0.4330\pm0.0263$ & $0.2940\pm0.0144$ \\
+active\_graph\_h\_\_graph\_s\_\_l1 & $0.2654\pm0.0074$ & $0.0623\pm0.0019$ & $0.4271\pm0.0128$ & $0.2906\pm0.0086$ \\
+active\_graph\_h\_\_graph\_s & $0.2738\pm0.0061$ & $0.0641\pm0.0011$ & $0.4349\pm0.0081$ & $0.3001\pm0.0068$ \\
+active\_graph\_h & $0.2574\pm0.0187$ & $0.0601\pm0.0032$ & $0.4084\pm0.0224$ & $0.2816\pm0.0180$ \\
+recon\_only\_ph\_ps\_nonneg & $0.2702\pm0.0026$ & $0.0630\pm0.0009$ & $0.4296\pm0.0051$ & $0.2960\pm0.0035$ \\
+\bottomrule
+\end{tabular}
+\end{subtable}
+\vspace{0.3cm}
+\begin{subtable}{\textwidth}
+\centering
+\caption{Perplexity \& Topic Quality}
+\begin{tabular}{lccccc}
+\toprule
+Model & Herb PPL & Herb PPL (raw) & Sym PPL & Sym PPL (raw) & Coherence \\
+\midrule
+ptm\_a & --- & $304.3\pm7.2$ & --- & $69.9\pm0.9$ & $0.6147\pm0.0239$ \\
+ptm\_b & --- & $151.5\pm0.9$ & --- & $66.6\pm0.6$ & $0.7010\pm0.0210$ \\
+ptm\_c & --- & $212.6\pm2.8$ & --- & $67.6\pm0.7$ & $0.8080\pm0.0116$ \\
+ptm\_d & --- & $148.5\pm0.9$ & --- & $67.7\pm0.6$ & $0.7800\pm0.0234$ \\
+atm & --- & $866.7\pm3.0$ & --- & $100.2\pm0.3$ & --- \\
+bibtm & --- & $196.6\pm0.0$ & --- & $99.2\pm0.0$ & --- \\
+blocklda & --- & $nan\pmnan$ & --- & $nan\pmnan$ & $0.4000\pm0.0361$ \\
+linklda & --- & $455.2\pm18.0$ & --- & $79.6\pm1.3$ & --- \\
+linkplsalda & --- & $364.7\pm11.9$ & --- & $72.0\pm1.3$ & $0.7013\pm0.0203$ \\
+CF & --- & --- & --- & --- & --- \\
+recon\_only\_mvgsnmf & $148.0\pm1.5$ & $169.8\pm2.3$ & $59.8\pm1.3$ & $20191.3\pm2017.0$ & $0.6353\pm0.0097$ \\
+vanilla\_nmf\_fro & $143.1\pm1.4$ & $156.9\pm2.6$ & $56.1\pm1.3$ & $24426.7\pm2001.8$ & $0.6286\pm0.0135$ \\
+indep\_nmf\_procrustes\_bridge & $156.1\pm2.0$ & $59859.7\pm19896.9$ & $78.9\pm1.6$ & $154.7\pm9.3$ & $0.7022\pm0.0815$ \\
+sparse\_nmf\_l1 & $143.0\pm1.1$ & $32802.8\pm3265.1$ & $63.2\pm1.3$ & $796919.2\pm102593.5$ & $0.3162\pm0.1222$ \\
+gnmf\_graph & $138.3\pm1.1$ & $155.5\pm1.7$ & $54.3\pm1.3$ & $9114.1\pm913.8$ & $0.6502\pm0.0157$ \\
+active\_graph\_h\_\_graph\_s\_\_l1\_\_pair\_\_know\_hs & $143.1\pm1.7$ & $157.1\pm9.5$ & $54.9\pm1.3$ & $1487.7\pm465.7$ & $0.6757\pm0.0142$ \\
+active\_graph\_h\_\_graph\_s\_\_l1\_\_pair & $143.0\pm1.5$ & $156.7\pm6.4$ & $55.0\pm1.4$ & $1141.5\pm429.2$ & $0.6748\pm0.0081$ \\
+active\_graph\_h\_\_graph\_s\_\_l1 & $143.3\pm2.0$ & $157.0\pm9.4$ & $55.0\pm1.4$ & $1073.8\pm339.8$ & $0.6725\pm0.0104$ \\
+active\_graph\_h\_\_graph\_s & $142.0\pm1.0$ & $149.6\pm2.9$ & $55.1\pm1.3$ & $1649.2\pm435.3$ & $0.6623\pm0.0133$ \\
+active\_graph\_h & $148.5\pm4.1$ & $171.0\pm18.7$ & $56.2\pm1.7$ & $100783.2\pm61530.1$ & $0.6238\pm0.0418$ \\
+recon\_only\_ph\_ps\_nonneg & $148.0\pm1.5$ & $168.6\pm3.5$ & $59.8\pm1.3$ & $25404.4\pm6101.4$ & $0.6270\pm0.0024$ \\
+\bottomrule
+\end{tabular}
+\end{subtable}
+\end{table*}

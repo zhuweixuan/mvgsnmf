@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+*.log
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+*.egg-info/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+.runtime_tmp/
+.cupy_cache/
+
+# Generated experiment outputs
+artifacts/
+**/factors.npz
+**/metrics.json
+**/config.yaml
+**/seed_*/
+**/K_*/
+**/val_*/

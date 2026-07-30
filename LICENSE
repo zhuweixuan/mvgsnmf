@@ -1,0 +1,9 @@
+Copyright (c) 2026 MV-GSNMF authors. All rights reserved.
+
+No open-source license was present in the research working directory, and this
+release package does not infer or grant one. The code is provided for manuscript
+review and reproducibility inspection only until the copyright holders select
+and publish explicit license terms.
+
+The files under data/ are governed separately by DATA_TERMS.md and are not
+covered by this notice.

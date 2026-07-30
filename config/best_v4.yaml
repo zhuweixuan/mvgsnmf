@@ -1,0 +1,89 @@
+# Reconstruction-only base profile used by the experiment sweep scripts.
+model_name: "mvgsnmf_best_v4_base"
+data_root: "data"
+device: "gpu"
+
+files:
+  herb_presence: "matrix_from_mappings_herb_presence.csv"
+  symptom_presence: "matrix_from_mappings_symptom.csv"
+  herb_dosage: "matrix_from_mappings_herb_g.csv"
+  herb_category: "herb_category_onehot.csv"
+  herb_features: "herb_feature_matrix_793.csv"
+  symptom_features: "symptom_feature_matrix.csv"
+  herb_cooc_pairs: "herb_cooccurrence_pairs.csv"
+  symptom_cooc_pairs: "symptom_cooccurrence_pairs.csv"
+  herb_mutex_pairs: "herb_mutual_exclusion_pairs_index_pairs.csv"
+  symptom_herb_knowledge: "symptom_herb_tcm_mesh.txt"
+  herb_alias: "herb_alias_user.csv"
+
+seed: 42
+K: 30
+alpha: 5.0
+beta_pair: 0.0
+lambda_know: 0.0
+lambda_h: 0.0
+lambda_s: 0.0
+gamma_g: 0.0
+gamma_h: 0.0
+gamma_s: 0.0
+gamma_d: 0.0
+
+graph:
+  herb_eta: [1.0, 0.5, 0.5]
+  symptom_xi: [1.0, 0.5, 0.5]
+  knn_k: 10
+  pair_min_support: 20
+  laplacian: "unnormalized"
+
+training:
+  update_rule: "hybrid"
+  inner_steps_hs: 3
+  max_iter: 300
+  lr: 0.001
+  tol: 1.0e-5
+  early_stop_patience: 20
+  early_stop_metric: "valid_map_avg"
+  disable_early_stop: true
+  pretrain_iters: 0
+  log_every: 10
+  eval_every: 300
+  init_method: "nndsvd"
+  average_last_n_checkpoints: 20
+  refine_hs_iters: 100
+
+inference:
+  dirichlet_alpha: 0.01
+  tfidf_decouple: true
+
+split:
+  method: "prescription"
+  seed: 42
+  train_ratio: 0.8
+  valid_ratio: 0.1
+  test_ratio: 0.1
+
+tfidf:
+  enabled: true
+  target: "both"
+  use_idf: true
+  smooth_idf: true
+  sublinear_tf: false
+  norm: "l2"
+
+loss_switches:
+  ph: true
+  ps: true
+  pd: false
+  graph_h: false
+  graph_s: false
+  l1: false
+  contra: false
+  pair: false
+  know_hs: false
+  hyper_h: false
+  hyper_var: false
+  hyper_mean: false
+
+ppl_refine:
+  em_iters: 15
+  beta_bar: 0.1
