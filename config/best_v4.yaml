@@ -1,4 +1,4 @@
-# Reconstruction-only base profile used by the experiment sweep scripts.
+# We use this reconstruction-only base profile in our experiment sweep scripts.
 model_name: "mvgsnmf_best_v4_base"
 data_root: "data"
 device: "gpu"

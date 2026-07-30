@@ -96,7 +96,7 @@ and `Pair` for the herb-pair co-occurrence view.
 
 The herb-presence (`ph`) and symptom-presence (`ps`) reconstruction terms and
 nonnegativity remain active throughout the chain. We disable the dosage view
-(`pd`) in the current experiments. Stage 05 is therefore a reconstruction-only,
+(`pd`) in the reported experiments. Stage 05 is therefore a reconstruction-only,
 shared-prescription-factor two-view NMF, not the separate concatenated-data
 `Vanilla NMF` baseline.
 
@@ -194,8 +194,8 @@ python scripts/revision/run_tfidf_ablation.py --base_config config/best_v4.yaml
 python scripts/revision/run_wilcoxon_significance.py
 ```
 
-These batch commands can generate many runs. We keep their per-run outputs local
-and provide the aggregate tables, statistics, and figures under
+These batch commands can generate many runs. We do not version their per-run
+outputs; we provide the aggregate tables, statistics, and figures under
 `paper_results/`.
 
 ## Data scope

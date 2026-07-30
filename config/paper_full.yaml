@@ -1,4 +1,4 @@
-# Full MV-GSNMF profile used for the paper experiments.
+# We use this full MV-GSNMF profile for the experiments reported in our paper.
 model_name: "mvgsnmf_paper_full"
 data_root: "data"
 device: "gpu"

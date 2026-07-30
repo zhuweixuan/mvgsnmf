@@ -16,8 +16,8 @@ We use the following inputs with `config/paper_full.yaml`:
 The prescription matrices contain 33,729 rows, 793 herb columns, and 390
 symptom columns. The first column is the internal `prescription_id`.
 
-We do not include dosage data because dosage reconstruction is disabled in the
-current experiment configurations. With `loss_switches.pd: false`, the loader
+We do not include dosage data because dosage reconstruction is disabled in all
+released experiment configurations. With `loss_switches.pd: false`, the loader
 skips the dosage path, so the model and smoke test run without a dosage file.
 Dosage-aware modeling is a planned direction for future work; follow the
 repository for updates.
