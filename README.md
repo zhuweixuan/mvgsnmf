@@ -95,7 +95,8 @@ and symptom graph regularization. `Know` is TCM MeSH knowledge coupling, and
 | 05 | Reconstruction-only SL-CNMF | None | Then remove `graph_h` |
 
 The herb-presence (`ph`) and symptom-presence (`ps`) reconstruction terms and
-nonnegativity remain active in every stage. The dosage view (`pd`) is disabled.
+nonnegativity remain active in every stage. The dosage view (`pd`) is disabled
+because dosage-aware modeling is outside the scope of the present study.
 Consequently, stage 05 is a reconstruction-only, shared-prescription-factor
 two-view NMF, not the separate concatenated-data `Vanilla NMF` baseline.
 
@@ -201,10 +202,12 @@ under `paper_results/`.
 
 The model starts from versioned, derived matrices in `data/`. Raw PTM/CKCEST
 prescription text, filtered free text, and intermediate parsing logs are not
-included. The reported dosage view was disabled in every paper experiment
+included. The dosage view was disabled in every paper experiment
 (`loss_switches.pd: false`), so the 230 MiB dosage CSV is also omitted. The
 loader creates a shape-compatible zero placeholder when that view is disabled;
-enabling `pd` still requires the actual dosage file.
+enabling `pd` still requires the actual dosage file. Dosage-aware prescription
+modeling is part of our planned follow-up work, and readers are welcome to
+follow future project updates.
 
 The included matrices contain sequential prescription identifiers and encoded
 herb/symptom indicators, not raw prescription text. They remain derived from a
