@@ -236,3 +236,9 @@ We release the source code and documentation under the
 
 Data files follow the provenance and use terms documented in
 [`DATA_TERMS.md`](DATA_TERMS.md).
+
+## Citation
+
+Machine-readable citation metadata for this versioned software release are
+provided in [`CITATION.cff`](CITATION.cff). Please cite the archived release
+associated with the manuscript when using the code or derived model inputs.

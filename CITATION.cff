@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software, please cite the archived release and the associated
+  research article.
+type: software
+title: "MV-GSNMF: Code and Reproducibility"
+abstract: >-
+  Reproducibility release for the MV-GSNMF study of shared latent factorization
+  in Traditional Chinese Medicine prescription mining. The release contains
+  model code, experiment configurations, derived analysis matrices, aggregate
+  results, and scripts for the reported ablation and baseline evaluations.
+authors:
+  - family-names: Zhu
+    given-names: Weixuan
+    affiliation: Jinan University
+  - family-names: Huang
+    given-names: Haozhi
+    affiliation: Jinan University
+  - family-names: Tsoi
+    given-names: Ah Chung
+    affiliation: University of Wollongong
+  - family-names: Hagenbuchner
+    given-names: Markus
+    affiliation: University of Wollongong
+version: 1.0.0
+date-released: 2026-07-31
+license: MIT
+repository-code: "https://github.com/zhuweixuan/mvgsnmf"
+url: "https://github.com/zhuweixuan/mvgsnmf"
+keywords:
+  - Traditional Chinese Medicine
+  - prescription mining
+  - nonnegative matrix factorization
+  - shared latent factorization
+  - reproducibility
